@@ -1,17 +1,25 @@
-// import { pwaInfo } from 'virtual:pwa-info';
-import { useRegisterSW } from 'virtual:pwa-register/react';
-
 import useNotification from './hooks/useNotification';
-import SimaLandIcon from './icons/sima-logo.png';
+import IncomingCall from './icons/incoming-call-logo.png';
 
 const App = () => {
-  const { isActiveNotification, enableNotification, disableNotification, notifyUser } =
-    useNotification();
+  const { permission, error, requestPermission, notify } = useNotification();
 
+  // Настройки для уведомления о звонке
+  const options = {
+    // actions: [
+    //   { action: 'like', title: 'Ответить на звонок' },
+    //   { action: 'reply', title: 'Сбросить' },
+    // ],
+    body: 'SIMA-LAND SIP',
+    image: IncomingCall,
+  };
+  console.log(error);
   return (
     <div>
-      <button onClick={enableNotification}>Включить уведомления</button>
-      <button onClick={() => notifyUser('Вам поступает звонок от 1002!')}>
+      <span>Доступ: {permission}</span>
+      <span>Ошибка: {}</span>
+      <button onClick={requestPermission}>Включить уведомления</button>
+      <button onClick={() => notify('Вам поступает звонок от 1002!', options)}>
         Отправить уведомление
       </button>
     </div>

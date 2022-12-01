@@ -17,9 +17,6 @@ export default defineConfig(({ mode }) => {
       // #PWA
       VitePWA({
         registerType: 'autoUpdate',
-        devOptions: {
-          enabled: true,
-        },
       }),
       createHtmlPlugin({
         // minify - активирует минификацию
