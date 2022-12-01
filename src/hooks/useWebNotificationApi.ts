@@ -53,7 +53,7 @@ const isServer = typeof window === 'undefined';
  */
 const isSupported = !isServer && 'Notification' in window;
 
-interface UseNotificationReturnType {
+interface useWebNotificationApiType {
   /**
    * Статус разрешения для отображения веб-уведомлений.
    * default - начальное
@@ -82,7 +82,7 @@ interface UseNotificationReturnType {
   ) => null | Notification;
 }
 
-export function useNotification(): UseNotificationReturnType {
+export function useWebNotificationApi(): useWebNotificationApiType {
   const [{ permission, error }, setState] = React.useReducer<NotificationReducer>(
     (prevState, action) => ({ ...prevState, ...action }),
     {
@@ -152,4 +152,4 @@ export function useNotification(): UseNotificationReturnType {
   };
 }
 
-export default useNotification;
+export default useWebNotificationApi;
